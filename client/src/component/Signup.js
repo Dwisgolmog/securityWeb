@@ -16,6 +16,8 @@ function SingUp() {
         if(!email && !password && !name)
             return setErrorMs("입력이 잘못 되었습니다!! 다시 한번 확인해주세요.");
 
+        
+            
         if(true){
             navigate('/login');
         }
