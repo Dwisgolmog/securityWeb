@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function SingUp() {
     let navigate = useNavigate();
@@ -12,12 +13,24 @@ function SingUp() {
     const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
     const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
 
-    const handleSingUp = () => {
+    const handleSinUp = async() => {
         if(!email && !password && !name)
             return setErrorMs("입력이 잘못 되었습니다!! 다시 한번 확인해주세요.");
 
+        await axios.post("http://localhost:8080/Members-Management/User-SinUp",{
+            email,
+            password,
+            name    
+        })  
+        .then((result)=>{
+            console.log(result);
+        })
+        .catch((e)=>{
+            console.log("/Sinup 페이지 post 요청 오류");
+            console.log(e);
+        })
         
-            
+
         if(true){
             navigate('/login');
         }
@@ -54,7 +67,7 @@ function SingUp() {
                 {/* Singup 버튼 */}
                 <div class="flex flex-col space-y-5 w-full">
                     <button onClick={()=>{
-                        handleSingUp();
+                        handleSinUp();
                     }}
                     class="w-full bg-[#0070ba] rounded-3xl p-3 text-white font-bold transition duration-200 hover:bg-[#003087]">SingUp</button>
                 </div>
