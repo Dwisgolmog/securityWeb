@@ -30,6 +30,7 @@ var db = client.db('SecurityWeb');
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/',function(req,res){
+<<<<<<< Updated upstream
     res.sendFile(path.join(__dirname,'/client/build/index.html'));
 })
 
@@ -48,3 +49,6 @@ app.post('/Members-Management/User-SinUp',async (req,res)=>{
 app.get('*',function(req,res){
     res.sendFile(path.join(__dirname,'/client/build/index.html'));
 })
+
+//배포하는법
+//https://velog.io/@kcj_dev96/%ED%94%84%EB%A1%A0%ED%8A%B8-%EB%B0%B0%ED%8F%AC-%EB%B0%A9%EB%B2%95-1%ED%8E%B8AWS-EC2-with-React-Express-%ED%99%98%EA%B2%BD 
