@@ -30,18 +30,17 @@ var db = client.db('SecurityWeb');
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/',function(req,res){
-<<<<<<< Updated upstream
     res.sendFile(path.join(__dirname,'/client/build/index.html'));
 })
 
 //회원추가
-app.post('/Members-Management/User-SinUp',async (req,res)=>{
+app.post('/Members-Management/User-SignUp',async (req,res)=>{
     try{
         await db.collection('Members Management').insertOne({email:req.body.email, password:req.body.password, name:req.body.name});
         res.send(200);
     } catch(e){
-        console.log("/Members-Management/User-SinUp 에서 에러 발생:"+e);
-        res.send("/Members-Management/User-SinUp 에서 에러 발생:"+e);
+        console.log("/Members-Management/User-SignUp 에서 에러 발생:"+e);
+        res.send("/Members-Management/User-SignUp 에서 에러 발생:"+e);
     }
 })
 

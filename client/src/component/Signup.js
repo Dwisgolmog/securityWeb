@@ -14,26 +14,30 @@ function SingUp() {
     const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
 
     const handleSinUp = async() => {
-        if(!email && !password && !name)
+        if(!email && !password && !name){
             return setErrorMs("입력이 잘못 되었습니다!! 다시 한번 확인해주세요.");
+        }else{
+            await axios.post("http://localhost:8080/Members-Management/User-SignUp",{
+                email,
+                password,
+                name    
+            })  
+            .then((result)=>{
+                console.log(result);
+                navigate('/login');
+            })
+            .catch((e)=>{
+                console.log("/SignUp 페이지 post 요청 오류");
+                console.log(e);
+            })
+        }
 
-        await axios.post("http://localhost:8080/Members-Management/User-SinUp",{
-            email,
-            password,
-            name    
-        })  
-        .then((result)=>{
-            console.log(result);
-        })
-        .catch((e)=>{
-            console.log("/Sinup 페이지 post 요청 오류");
-            console.log(e);
-        })
+
         
 
-        if(true){
-            navigate('/login');
-        }
+        // if(true){
+        //     navigate('/login');
+        // }
     }    
 
     return (
