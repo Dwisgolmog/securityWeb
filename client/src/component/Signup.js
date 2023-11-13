@@ -5,9 +5,9 @@ import axios from "axios";
 function SingUp() {
     let navigate = useNavigate();
 
-    const [email,setEmail] = useState();
-    const [password,setPassword] = useState();
-    const [name,setName] = useState();
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+    const [name,setName] = useState('');
     const [errorMs,setErrorMs] = useState();
 
     const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;

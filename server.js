@@ -5,6 +5,11 @@ const path = require('path')
 //dotenv
 require('dotenv').config();
 
+//cors 설정
+app.use(express.json());
+var cors = require('cors');
+app.use(cors());
+
 // mongodb 연결
 const { MongoClient, ServerApiVersion  } = require('mongodb');
 const uri = `mongodb+srv://dwisgolmog:${process.env.DB_PWD}@cluster0.vhwu9v6.mongodb.net/?retryWrites=true&w=majority`;
@@ -35,6 +40,7 @@ app.get('/',function(req,res){
 
 //회원추가
 app.post('/Members-Management/User-SignUp',async (req,res)=>{
+    console.log(req.body);
     try{
         //await db.collection('Members Management').insertOne({email:req.body.cEmail, password:req.body.cPassword, name:req.body.cName});
         console.log("/Members-Management/User-SinUp : 200");
