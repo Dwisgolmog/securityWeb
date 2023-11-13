@@ -40,9 +40,8 @@ app.get('/',function(req,res){
 
 //회원추가
 app.post('/Members-Management/User-SignUp',async (req,res)=>{
-    console.log(req.body);
     try{
-        //await db.collection('Members Management').insertOne({email:req.body.cEmail, password:req.body.cPassword, name:req.body.cName});
+        await db.collection('Members Management').insertOne({email:req.body.email, password:req.body.password, name:req.body.name});
         console.log("/Members-Management/User-SinUp : 200");
         res.send(200);
     } catch(e){

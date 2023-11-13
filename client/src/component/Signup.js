@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -12,6 +12,10 @@ function SingUp() {
 
     const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
     const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
+
+    useEffect(() => {
+        if (emailRegEx.test(email) && passwordRegEx.test(password) && name);
+      }, [email, password, name]);
 
     const handleSinUp = async() => {
         if(!email && !password && !name){
@@ -31,14 +35,8 @@ function SingUp() {
                 console.log(e);
             })
         }
-
-
-        
-
-        // if(true){
-        //     navigate('/login');
-        // }
     }    
+
 
     return (
         <div class="min-h-screen flex justify-center items-center bg-white">
@@ -49,19 +47,17 @@ function SingUp() {
 
                 {/* 위에서 부터 순서대로 이메일,비밀번호,이름 입력 */}
                 <input type={'email'} onChange={(e)=>{
-                    if(emailRegEx.test(e.target.value))
-                        setEmail(e.target.value);
+                    setEmail(()=>e.target.value);
                 }}
                  class="p-3 border-[1px] border-slate-500 rounded-sm w-80" placeholder="E-Mail" />
 
                 <input type={'password'} onChange={(e)=>{
-                    if(passwordRegEx.test(e.target.value))
-                        setPassword(e.target.value);
+                    setPassword(()=>e.target.value);
                 }}
                 class="p-3 border-[1px] border-slate-500 rounded-sm w-80" placeholder="Password" />
 
                 <input onChange={(e)=>{
-                    setName(e.target.value);
+                    setName(()=>e.target.value);
                 }}
                 class="p-3 border-[1px] border-slate-500 rounded-sm w-80" placeholder="Name" />
                 
