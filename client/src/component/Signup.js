@@ -28,6 +28,7 @@ function SingUp() {
             })  
             .then((result)=>{
                 console.log(result);
+                alert('회원가입 완료');
                 navigate('/login');
             })
             .catch((e)=>{
