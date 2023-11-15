@@ -11,23 +11,15 @@ var cors = require('cors');
 app.use(cors());
 
 // mongodb 연결
-const { MongoClient, ServerApiVersion  } = require('mongodb');
-const uri = `mongodb+srv://dwisgolmog:${process.env.DB_PWD}@cluster0.vhwu9v6.mongodb.net/?retryWrites=true&w=majority`;
-const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-});
+let connectDB = require("./db.js");
 
-client.connect().then((client)=>{
+connectDB.connect().then((client)=>{
     console.log("DB 연결 성공!!");
     app.listen(8080,function(){
         console.log('listening on 8080')
     })
 }).catch((err)=>{console.log("MogoDB연결 에러 발생:"+err)});
-var db = client.db('SecurityWeb');
+var db = connectDB.db('SecurityWeb');
 //mongoDB 연결 끝
 
 
