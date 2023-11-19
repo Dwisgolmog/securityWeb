@@ -1,15 +1,31 @@
 import { useState } from "react";
 import { useNavigate,Link } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
     let navigate = useNavigate();
 
     const [errorMs,setErrorMs] = useState('');
-    const [email,setEmail] = useState('');
+    const [username,setUserName] = useState('');
     const [password,setPassword] = useState('');
 
     const handleLogIn = ()=>{
-        
+        if(!username && !password){
+            setErrorMs("전부 입력해주십시오!");
+        }
+
+        axios.post("http://localhost:8080/Members-Management/User-logIn",{
+            username,
+            password
+        })
+        .then((result)=>{
+            console.log(result);
+            //navigate('/')
+        })
+        .catch((e)=>{
+            console.log("/User-logIn post 요류 발생!");
+            console.log(e);
+        })
     }
 
     return (
@@ -19,12 +35,12 @@ function Login() {
                     <img width="30" class="-mt-10" src="https://www.paypalobjects.com/images/shared/momgram@2x.png" />
                 </div>
                 <input onChange={(e)=>{
-                    setEmail(()=>e.target.value);
+                    setUserName(()=>e.target.value);
                 }} class="p-3 border-[1px] border-slate-500 rounded-sm w-80" placeholder="E-Mail" />
 
 
                 <div class="flex flex-col space-y-1">
-                    <input onChange={(e)=>{
+                    <input type={'password'} onChange={(e)=>{
                         setPassword(()=>e.target.value);
                     }} class="p-3 border-[1px] border-slate-500 rounded-sm w-80" placeholder="Password" />
                     <br />
